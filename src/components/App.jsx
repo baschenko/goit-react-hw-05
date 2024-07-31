@@ -1,31 +1,39 @@
-import { useEffect } from "react";
-import { fetchSearchMovies } from "../services/api";
+// import { useEffect } from "react";
+// import { fetchSearchMovies } from "../services/api";
 import { Route, Routes } from "react-router-dom";
+import HomePage from "../pages/HomePage/HomePage";
+import MoviesPage from "../pages/MoviesPage/MoviesPage";
+import MovieDetailsPage from "../pages/MovieDetailsPage/MovieDetailsPage";
+import MovieCast from "./MovieCast/MovieCast ";
+import MovieReviews from "./MovieReviews/MovieReviews";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import Navigation from "./Navigation/Navigation";
 
 const App = () => {
-  useEffect(() => {
-    const trendMovie = async () => {
-      const query = "cat";
-      try {
-        const data = await fetchSearchMovies({ query: query });
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    trendMovie();
-  }, []);
+  // useEffect(() => {
+  //   const trendMovie = async () => {
+  //     const query = "cat";
+  //     try {
+  //       const data = await fetchSearchMovies({ query: query });
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   trendMovie();
+  // }, []);
 
   return (
     <div>
+      <Navigation />
       <Routes>
-        <Route path="/" element={<h1>HomePage</h1>} />
-        <Route path="/movies" element={<h1>MoviesPage</h1>} />
-        <Route path="/movies/:movieId" element={<h1>MovieDetailsPage</h1>}>
-          <Route path="cast" element={<h1>MovieCast</h1>} />
-          <Route path="reviews" element={<h1>MovieReviews</h1>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
         </Route>
-        <Route path="*" element={<h1>NotFoundPage</h1>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
