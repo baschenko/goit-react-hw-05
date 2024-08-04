@@ -1,0 +1,24 @@
+.container {
+  padding: 15px 0;
+}
+
+.input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.btn {
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #dedede;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid black;
+  }
+
+  &:active {
+    border: 1px;
+    background-color: #dedede;
+  }
+}

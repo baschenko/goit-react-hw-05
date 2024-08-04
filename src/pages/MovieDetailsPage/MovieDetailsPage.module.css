@@ -1,0 +1,24 @@
+.container {
+  padding: 15px 0;
+}
+
+.btn {
+  cursor: pointer;
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.header {
+  display: flex;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2a363b;
+}
+
+.image {
+  margin-right: 15px;
+}
+
+.block {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2a363b;
+}

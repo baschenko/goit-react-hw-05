@@ -1,15 +1,45 @@
-.nav {
+.header {
+  padding: 12px 0;
+  border-bottom: 1px solid #2a363b;
+  width: 1170px;
   display: flex;
-  gap: 20px;
-  list-style: none;
+  justify-content: space-between;
 }
 
 .link {
-  color: black;
-  font-weight: 800;
+  display: inline-block;
   text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
 }
 
 .active {
-  color: red;
+  composes: link;
+  color: #f21d41;
+}
+
+.label {
+  display: flex;
+  font-size: 19px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.checkbox {
+  margin-left: 10px;
+  appearance: none;
+  width: 60px;
+  height: 34px;
+  cursor: pointer;
+}
+.on {
+  background-size: 60px;
+  background-image: url(../../on.png);
+}
+
+.off {
+  background-size: 60px;
+  background-image: url(../../off.png);
 }
