@@ -21,4 +21,28 @@
 .block {
   padding-bottom: 16px;
   border-bottom: 1px solid #2a363b;
+  display: flex;
+}
+.itemList {
+  margin-bottom: 25px;
+  margin-top: 15px;
+  list-style: none;
+  margin-right: 20px;
+}
+
+.linkList {
+  text-decoration: none;
+  padding: 10px 30px;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    font-weight: 600;
+    background-color: #8adeb2;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
 }

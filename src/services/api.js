@@ -48,7 +48,7 @@ export const getReviewMovie = async (movieId) => {
 
 export const getSearchMovie = async (searchParam) => {
   const { data } = await axios.request(
-    `https://api.themoviedb.org/3/search/movie?${searchParam}`,
+    `https://api.themoviedb.org/3/search/movie?query=${searchParam}`,
     options,
   );
 

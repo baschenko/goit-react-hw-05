@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import * as API from "../../services/api";
+import { InfinitySpin } from "react-loader-spinner";
 import s from "./MovieDetailsPage.module.css";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
@@ -54,16 +55,28 @@ const MovieDetailsPage = () => {
           </div>
           <p>Additional information</p>
           <ul className={s.block}>
-            <li>
-              <Link to="cast">cast</Link>
+            <li className={s.itemList}>
+              <Link to="cast" className={s.linkList}>
+                Cast
+              </Link>
             </li>
-            <li>
-              <Link to="reviews">reviews</Link>
+            <li className={s.itemList}>
+              <Link to="reviews" className={s.linkList}>
+                Reviews
+              </Link>
             </li>
           </ul>
         </>
       )}
-      <Suspense fallback={<div>Loading Subpage...</div>}>
+      <Suspense
+        fallback={
+          <InfinitySpin
+            visible={true}
+            width="200"
+            color="#4fa94d"
+            ariaLabel="infinity-spin-loading"
+          />
+        }>
         <Outlet />
       </Suspense>
     </div>

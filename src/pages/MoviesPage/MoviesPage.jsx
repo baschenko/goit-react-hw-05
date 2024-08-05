@@ -4,15 +4,19 @@ import * as API from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 import s from "./MoviesPage.module.css";
 
-const MoviesPage = ({ options }) => {
+const MoviesPage = ({ options, onChange }) => {
   const [searchParam, setSearchParam] = useSearchParams("");
   const [query, setQuery] = useState("");
   const [searchMovies, setSearchMovies] = useState([]);
+  const getQuery = searchParam.get("query");
 
   useEffect(() => {
+    if (!getQuery) {
+      return;
+    }
     async function getMovieInfo() {
       try {
-        const reviews = await API.getSearchMovie(searchParam); //запит на сервер АРІ
+        const reviews = await API.getSearchMovie(getQuery); //запит на сервер АРІ
         setSearchMovies(reviews);
       } catch (error) {
         console.log(error);
@@ -21,28 +25,36 @@ const MoviesPage = ({ options }) => {
 
     //HTTP запит на монтування
     getMovieInfo();
-  }, [searchParam]);
+  }, [getQuery]);
 
   const updateQueryString = (evt) => {
     const movieIdValue = evt.target.value;
-    if (movieIdValue === "") {
-      return setQuery("");
-    }
-
     setQuery(movieIdValue);
-  };
-
-  const onChangeQuery = () => {
-    setSearchParam({ query: query });
-    setQuery("");
   };
 
   const onSubmit = (evt) => {
     evt.preventDefault();
+    if (!query) {
+      setSearchMovies([]);
+      return setSearchParam({});
+    }
+    setSearchParam({ query: query });
+    setQuery("");
   };
 
   return (
-    <div className={s.container}>
+    <div>
+      <h1>Search for movies</h1>
+      <label className={s.label}>
+        List
+        <input
+          type="checkbox"
+          className={[s.checkbox, options ? s.on : s.off].join(" ")}
+          value="false"
+          onChange={() => onChange()}
+        />
+        Images
+      </label>
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -50,7 +62,7 @@ const MoviesPage = ({ options }) => {
           value={query}
           onChange={updateQueryString}
         />
-        <button type="submit" className={s.btn} onClick={onChangeQuery}>
+        <button type="submit" className={s.btn}>
           Search
         </button>
       </form>

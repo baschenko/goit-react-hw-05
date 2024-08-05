@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { NavLink, Outlet } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
 import s from "./Navigation.module.css";
 import { Suspense } from "react";
 
@@ -7,7 +8,7 @@ const buildLinkClass = ({ isActive }) => {
   return clsx(s.link, isActive && s.active);
 };
 
-const Navigation = ({ onChange, options }) => {
+const Navigation = () => {
   return (
     <div>
       <header className={s.header}>
@@ -19,18 +20,17 @@ const Navigation = ({ onChange, options }) => {
             Movies
           </NavLink>
         </nav>
-        <label className={s.label}>
-          images
-          <input
-            type="checkbox"
-            className={[s.checkbox, options ? s.on : s.off].join(" ")}
-            value="false"
-            onChange={() => onChange()}
-          />
-        </label>
       </header>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <InfinitySpin
+              visible={true}
+              width="200"
+              color="#4fa94d"
+              ariaLabel="infinity-spin-loading"
+            />
+          }>
           <Outlet />
         </Suspense>
       </main>

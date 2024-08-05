@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import imagesDefault from "../../default.png";
-import s from "./MoviesItem.module.css";
+import s from "./MovieList.module.css";
 
 const MovieList = ({ hits, options }) => {
   const location = useLocation();
@@ -26,8 +26,11 @@ const MovieList = ({ hits, options }) => {
         </Link>
       </li>
     ) : (
-      <li key={hit.id}>
-        <Link state={{ from: location }} to={`/movies/${hit.id}`}>
+      <li key={hit.id} className={s.itemList}>
+        <Link
+          className={s.linkList}
+          state={{ from: location }}
+          to={`/movies/${hit.id}`}>
           {hit.title}
         </Link>
       </li>

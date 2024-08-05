@@ -1,11 +1,15 @@
-.castList {
+.imageStyle {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   list-style: none;
 }
 
-.item {
+/* .listStyle {
+  list-style: none;
+} */
+
+/* .item {
   width: calc((100% - 170px) / 4);
   padding: 10px;
   display: inline-block;
@@ -18,4 +22,28 @@
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
       1px 4px 6px rgba(0, 0, 0, 0.16);
   }
+} */
+
+.label {
+  display: flex;
+  font-size: 19px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.checkbox {
+  margin: 0px 10px;
+  appearance: none;
+  width: 60px;
+  height: 34px;
+  cursor: pointer;
+}
+.on {
+  background-size: 60px;
+  background-image: url(../../on.png);
+}
+
+.off {
+  background-size: 60px;
+  background-image: url(../../off.png);
 }

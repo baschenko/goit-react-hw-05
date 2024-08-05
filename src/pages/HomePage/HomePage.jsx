@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import * as API from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
-import styles from "./HomePage.module.css";
+import s from "./HomePage.module.css";
 
-const HomePage = ({ options }) => {
+const HomePage = ({ onChange, options }) => {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -22,8 +22,18 @@ const HomePage = ({ options }) => {
   return (
     <div>
       <h1>Trending today</h1>
+      <label className={s.label}>
+        List
+        <input
+          type="checkbox"
+          className={[s.checkbox, options ? s.on : s.off].join(" ")}
+          value="false"
+          onChange={() => onChange()}
+        />
+        Images
+      </label>
       {movies !== null && (
-        <ul className={options ? styles.castList : ""}>
+        <ul className={options ? s.imageStyle : s.listStyle}>
           <MovieList hits={movies} options={options} />
         </ul>
       )}

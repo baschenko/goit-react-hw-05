@@ -19,27 +19,3 @@
   composes: link;
   color: #f21d41;
 }
-
-.label {
-  display: flex;
-  font-size: 19px;
-  cursor: pointer;
-  align-items: center;
-}
-
-.checkbox {
-  margin-left: 10px;
-  appearance: none;
-  width: 60px;
-  height: 34px;
-  cursor: pointer;
-}
-.on {
-  background-size: 60px;
-  background-image: url(../../on.png);
-}
-
-.off {
-  background-size: 60px;
-  background-image: url(../../off.png);
-}
