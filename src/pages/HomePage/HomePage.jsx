@@ -34,7 +34,7 @@ const HomePage = ({ onChange, options }) => {
       </label>
       {movies !== null && (
         <ul className={options ? s.imageStyle : s.listStyle}>
-          <MovieList hits={movies} options={options} />
+          <MovieList movies={movies} options={options} />
         </ul>
       )}
     </div>

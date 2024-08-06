@@ -2,36 +2,36 @@ import { Link, useLocation } from "react-router-dom";
 import imagesDefault from "../../default.png";
 import s from "./MovieList.module.css";
 
-const MovieList = ({ hits, options }) => {
+const MovieList = ({ movies, options }) => {
   const location = useLocation();
-  return hits.map((hit) =>
+  return movies.map((movie) =>
     options === true ? (
-      <li key={hit.id} className={s.item}>
+      <li key={movie.id} className={s.item}>
         <Link
           className={s.link}
           state={{ from: location }}
-          to={`/movies/${hit.id}`}>
+          to={`/movies/${movie.id}`}>
           <img
             src={
-              hit.poster_path !== null
-                ? `https://image.tmdb.org/t/p/w500${hit.poster_path}`
+              movie.poster_path !== null
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                 : imagesDefault
             }
-            alt={hit.title}
+            alt={movie.title}
             height="280"
             className={s.img}
           />
-          <h2 className={s.title}>{hit.title}</h2>
-          <p className={s.text}>Rating: {Math.ceil(hit.vote_average)}</p>
+          <h2 className={s.title}>{movie.title}</h2>
+          <p className={s.text}>Rating: {Math.ceil(movie.vote_average)}</p>
         </Link>
       </li>
     ) : (
-      <li key={hit.id} className={s.itemList}>
+      <li key={movie.id} className={s.itemList}>
         <Link
           className={s.linkList}
           state={{ from: location }}
-          to={`/movies/${hit.id}`}>
-          {hit.title}
+          to={`/movies/${movie.id}`}>
+          {movie.title}
         </Link>
       </li>
     ),

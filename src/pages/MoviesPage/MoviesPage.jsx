@@ -66,7 +66,7 @@ const MoviesPage = ({ options, onChange }) => {
           Search
         </button>
       </form>
-      {searchMovies !== null && (
+      {searchMovies.length !== 0 && (
         <ul>
           <MovieList hits={searchMovies} options={options} />
         </ul>

@@ -19,6 +19,7 @@ const App = () => {
   const [tag, setTag] = useState(false);
   return (
     <div className={s.container}>
+      <Navigation />
       <Suspense
         fallback={
           <InfinitySpin
@@ -29,35 +30,33 @@ const App = () => {
           />
         }>
         <Routes>
-          <Route path="/" element={<Navigation />}>
-            <Route
-              index
-              element={
-                <HomePage
-                  options={tag}
-                  onChange={() => {
-                    setTag(!tag);
-                  }}
-                />
-              }
-            />
-            <Route
-              path="movies"
-              element={
-                <MoviesPage
-                  options={tag}
-                  onChange={() => {
-                    setTag(!tag);
-                  }}
-                />
-              }
-            />
-            <Route path="movies/:movieId" element={<MovieDetailsPage />}>
-              <Route path="cast" element={<MovieCast />} />
-              <Route path="reviews" element={<MovieReviews />} />
-            </Route>
-            <Route path="*" element={<NotFoundPage />} />
+          <Route
+            index
+            element={
+              <HomePage
+                options={tag}
+                onChange={() => {
+                  setTag(!tag);
+                }}
+              />
+            }
+          />
+          <Route
+            path="movies"
+            element={
+              <MoviesPage
+                options={tag}
+                onChange={() => {
+                  setTag(!tag);
+                }}
+              />
+            }
+          />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </div>
