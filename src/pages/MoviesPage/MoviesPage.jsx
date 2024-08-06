@@ -3,10 +3,12 @@ import { useSearchParams } from "react-router-dom";
 import * as API from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 import s from "./MoviesPage.module.css";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const MoviesPage = ({ options, onChange }) => {
   const [searchParam, setSearchParam] = useSearchParams("");
   const [query, setQuery] = useState("");
+  const [isError, setIsError] = useState(null);
   const [searchMovies, setSearchMovies] = useState([]);
   const getQuery = searchParam.get("query");
 
@@ -17,9 +19,13 @@ const MoviesPage = ({ options, onChange }) => {
     async function getMovieInfo() {
       try {
         const reviews = await API.getSearchMovie(getQuery); //запит на сервер АРІ
+        if (!reviews.length) {
+          throw new Error(`Oops! "${getQuery}" - нема таких світлин`); //создаємо error, якщо повернувся пустий об'єкт
+        }
         setSearchMovies(reviews);
       } catch (error) {
         console.log(error);
+        setIsError(error);
       }
     }
 
@@ -34,8 +40,10 @@ const MoviesPage = ({ options, onChange }) => {
 
   const onSubmit = (evt) => {
     evt.preventDefault();
+    setIsError(null);
+    setSearchMovies([]);
+
     if (!query) {
-      setSearchMovies([]);
       return setSearchParam({});
     }
     setSearchParam({ query: query });
@@ -66,9 +74,10 @@ const MoviesPage = ({ options, onChange }) => {
           Search
         </button>
       </form>
+      {isError && <NotFoundPage>{isError.message}</NotFoundPage>}
       {searchMovies.length !== 0 && (
         <ul>
-          <MovieList hits={searchMovies} options={options} />
+          <MovieList movies={searchMovies} options={options} />
         </ul>
       )}
     </div>
